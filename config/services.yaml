@@ -25,3 +25,21 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+    App\Client\LinkedIn\Client:
+        class: App\Client\LinkedIn\Client
+        arguments:
+            $clientId: '%env(LINKEDIN_APP_CLIENT_ID)%'
+            $clientSecret: '%env(LINKEDIN_APP_CLIENT_SECRET)%'
+        calls:
+            - ["setRedirectUrl", ['%env(LINKEDIN_APP_REDIRECT_URL)%']]
+            - ["handleAccessToken"]
+        public: true
+
+    Abraham\TwitterOAuth\TwitterOAuth:
+        class: Abraham\TwitterOAuth\TwitterOAuth
+        arguments:
+            $consumerKey: '%env(TWITTER_CONSUMER_KEY)%'
+            $consumerSecret: '%env(TWITTER_CONSUMER_SECRET)%'
+            $oauthToken: '%env(TWITTER_ACCESS_TOKEN)%'
+            $oauthTokenSecret: '%env(TWITTER_ACCESS_TOKEN_SECRET)%'
+        public: true
