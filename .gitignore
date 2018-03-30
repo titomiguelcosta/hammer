@@ -1,9 +1,8 @@
-
 ###> symfony/framework-bundle ###
 .env
 /public/bundles/
 /var/
-#/vendor/
+/vendor/
 ###< symfony/framework-bundle ###
 
 ###> symfony/web-server-bundle ###
@@ -14,3 +13,6 @@
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+/project.zip
+/.idea
