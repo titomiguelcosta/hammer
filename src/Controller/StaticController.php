@@ -11,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class StaticController extends Controller
 {
     /**
-     * @Route("/", name="home")
+     * @Route("", name="home")
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
     public function home()
