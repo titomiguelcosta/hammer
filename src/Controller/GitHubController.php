@@ -13,23 +13,21 @@ class GitHubController extends Controller
 {
     /**
      * @Route("/github/user", name="github_user")
+     * @param Client $client
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
-    public function user()
+    public function user(Client $client)
     {
-        /** @var Client $client */
-        $client = $this->get('Github\Client');
-
         return $this->json($client->currentUser()->show());
     }
 
     /**
      * @Route("/github/repos", name="github_repos")
+     * @param Client $client
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
-    public function repos()
+    public function repos(Client $client)
     {
-        /** @var Client $client */
-        $client = $this->get('Github\Client');
-
         return $this->json($client->currentUser()->repositories());
     }
 }

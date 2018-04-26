@@ -33,7 +33,6 @@ services:
         calls:
             - ["setRedirectUrl", ['%env(LINKEDIN_APP_REDIRECT_URL)%']]
             - ["handleAccessToken"]
-        public: true
 
     Abraham\TwitterOAuth\TwitterOAuth:
         class: Abraham\TwitterOAuth\TwitterOAuth
@@ -42,4 +41,3 @@ services:
             $consumerSecret: '%env(TWITTER_CONSUMER_SECRET)%'
             $oauthToken: '%env(TWITTER_ACCESS_TOKEN)%'
             $oauthTokenSecret: '%env(TWITTER_ACCESS_TOKEN_SECRET)%'
-        public: true
