@@ -28,6 +28,17 @@ Configuration for Docker is provided. To develop locally, just run:
 
 $ docker-compose up
 
+## Endpoints
+
+It is a read-only API. All the methods return JSON and proxy the original APIs.
+
+* /v1/github/user
+* /v1/github/repos
+* /v1/twitter/user
+* /v1/twitter/tweets
+* /v1/linkedin/user
+* /v1/linkedin/oauth/callback
+
 ### Libraries
 
 * [GitHub](https://github.com/KnpLabs/php-github-api)
@@ -36,7 +47,7 @@ $ docker-compose up
 
 ## Deployment
 
-Configuration was added to deploy to AWS ElasticBeanstalk. 
+Configuration was added to deploy to [AWS ElasticBeanstalk](https://docs.aws.amazon.com/elasticbeanstalk). 
 
 Make sure you have the command [eb](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3.html) available. Tested with: EB CLI 3.12.4 (Python 3.6.1).
 
