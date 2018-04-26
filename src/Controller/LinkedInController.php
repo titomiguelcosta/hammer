@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Swagger\Annotations as SWG;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
@@ -15,7 +16,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class LinkedInController extends Controller
 {
     /**
-     * @Route("/linkedin/oauth/callback", name="linkedin_oauth_callback")
+     * @Route("/linkedin/oauth/callback", name="linkedin_oauth_callback", methods="GET")
+     * @SWG\Response(
+     *     response=200,
+     *     description="Fetches LinkedIn token"
+     * )
+     * @SWG\Tag(name="linkedin")
      * @param Request $request
      * @param Client $client
      * @return Response
@@ -34,7 +40,12 @@ class LinkedInController extends Controller
     }
 
     /**
-     * @Route("/linkedin/user", name="linkedin_user")
+     * @Route("/linkedin/user", name="linkedin_user", methods="GET")
+     * @SWG\Response(
+     *     response=200,
+     *     description="Returns the user details"
+     * )
+     * @SWG\Tag(name="linkedin")
      * @param Client $client
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      * @throws \LinkedIn\Exception

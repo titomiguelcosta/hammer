@@ -30,14 +30,8 @@ $ docker-compose up
 
 ## Endpoints
 
-It is a read-only API. All the methods return JSON and proxy the original APIs.
-
-* /v1/github/user
-* /v1/github/repos
-* /v1/twitter/user
-* /v1/twitter/tweets
-* /v1/linkedin/user
-* /v1/linkedin/oauth/callback
+It is a read-only API. All the methods return JSON and just proxies the original APIs.
+It uses Nelmio API Docs, check /v1/docs.
 
 ### Libraries
 

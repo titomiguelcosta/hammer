@@ -1,0 +1,9 @@
+nelmio_api_doc:
+    documentation:
+        info:
+            title: Hammer
+            description: By developers for developers
+            version: 1.0.0
+    areas:
+        path_patterns:
+            - ^/v1(?!/docs) # Accepts routes under /api except /api/doc

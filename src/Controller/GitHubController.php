@@ -5,6 +5,7 @@ namespace App\Controller;
 use Github\Client;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Swagger\Annotations as SWG;
 
 /**
  * @package App\Controller
@@ -12,7 +13,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class GitHubController extends Controller
 {
     /**
-     * @Route("/github/user", name="github_user")
+     * @Route("/github/user", name="github_user", methods="GET")
+     * @SWG\Response(
+     *     response=200,
+     *     description="Returns the user details"
+     * )
+     * @SWG\Tag(name="github")
      * @param Client $client
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
@@ -22,8 +28,13 @@ class GitHubController extends Controller
     }
 
     /**
-     * @Route("/github/repos", name="github_repos")
+     * @Route("/github/repos", name="github_repos", methods="GET")
+     * @SWG\Response(
+     *     response=200,
+     *     description="Returns the user repos"
+     * )
      * @param Client $client
+     * @SWG\Tag(name="github")
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
     public function repos(Client $client)
