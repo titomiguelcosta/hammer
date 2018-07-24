@@ -11,9 +11,8 @@ pipelines:
           - python get-pip.py
           - pip install -r requirements.txt --upgrade --user
           - export PATH=~/.local/bin:$PATH
-          - ls -al /root/.local/bin
-          - /root/.local/bin/eb --help --debug --verbose
+          - /root/.local/bin/eb --version
           - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
           - composer install
           - zip -r project.zip bin/ config/ public/ src/ templates/ vendor/ composer.json composer.lock composer.phar .ebextensions/ .elasticbeanstalk/
-          - eb deploy --staged
+          - /root/.local/bin/eb deploy --staged --debug
