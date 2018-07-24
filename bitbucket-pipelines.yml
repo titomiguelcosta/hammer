@@ -11,6 +11,6 @@ pipelines:
           - composer install
           - pip install -r requirements.txt
           - zip -r project.zip bin/ config/ public/ src/ templates/ vendor/ composer.json composer.lock composer.phar .ebextensions/ .elasticbeanstalk/
-          - echo $AWS_ACCESS_KEY_ID
+          - export PATH=$PATH:~/.local/bin          
           - eb --version
           - eb deploy --staged
