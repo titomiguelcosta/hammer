@@ -1,0 +1,24 @@
+branch-defaults:
+  development:
+    environment: development
+  master:
+    environment: production
+    group_suffix: null
+  stagging:
+    environment: stagging
+deploy:
+  artifact: project.zip
+global:
+  application_name: hammer
+  branch: null
+  default_ec2_keyname: hammer
+  default_platform: PHP 7.1
+  default_region: us-east-1
+  include_git_submodules: true
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: hammer
+  repository: null
+  sc: git
+  workspace_type: Application

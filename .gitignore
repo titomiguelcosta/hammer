@@ -9,10 +9,5 @@
 .web-server-pid
 ###< symfony/web-server-bundle ###
 
-# Elastic Beanstalk Files
-.elasticbeanstalk/*
-!.elasticbeanstalk/*.cfg.yml
-!.elasticbeanstalk/*.global.yml
-
 /project.zip
 /.idea
