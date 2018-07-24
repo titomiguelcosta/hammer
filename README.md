@@ -43,8 +43,19 @@ It uses Nelmio API Docs, check /v1/docs.
 
 Configuration was added to deploy to [AWS ElasticBeanstalk](https://docs.aws.amazon.com/elasticbeanstalk). 
 
-Make sure you have the command [eb](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3.html) available. Tested with: EB CLI 3.12.4 (Python 3.6.1).
+Make sure you have the command [eb](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3.html) available. Tested with: EB CLI 3.14.3, aws-cli/1.15.20 (Python 3.6.1).
 
-* Create an environment: eb create *ENV*
-* Configure environment variables: eb setenv APP_NAME=DEV *NAME*=*VALUE* ...
-* Deploy a new version: eb deploy *ENV*
+* pip install -r requirements.txt
+* aws configure --profile hammer
+* aws ec2 create-key-pair --profile hammer --key-name=hammer --query 'KeyMaterial' --output text > ~/.ssh/hammer.pem
+
+Create certificate and validate
+* aws acm request-certificate --profile hammer --domain-name titodevops.com --idempotency-token=frgasaseae3e2da --subject-alternative-names *.titodevops.com
+* chmod 400 ~/.ssh/hammer.pem
+* php composer.phar install
+* make build
+
+* Init project: eb init hammer --profile hammer --quiet 
+* Create an environment: eb create development
+* Configure environment variables: eb setenv APP_NAME=hammer *NAME*=*VALUE* ...
+* Deploy a new version: eb deploy development
