@@ -6,7 +6,7 @@ pipelines:
         caches:
           - composer
         script:
-          - apt-get update && apt-get install -y unzip zip curl pip
+          - apt-get update && apt-get install -y unzip zip curl python-pip
           - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
           - composer install
           - pip install -r requirements.txt
