@@ -10,9 +10,7 @@ pipelines:
           - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
           - composer install
           - pip install -r requirements.txt
-          - export PATH=$PATH:~/.local/bin
-          - which eb
-          - whereis eb         
-          - eb --version
+          - export PATH=$PATH:~/.local/bin     
+          - /usr/local/bin/eb --version
           - zip -r project.zip bin/ config/ public/ src/ templates/ vendor/ composer.json composer.lock composer.phar .ebextensions/ .elasticbeanstalk/
-          - eb deploy --staged
+          - /usr/local/bin/eb deploy --staged
