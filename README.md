@@ -51,7 +51,7 @@ Make sure you have the command [eb](https://docs.aws.amazon.com/elasticbeanstalk
 * aws ec2 create-key-pair --profile hammer --key-name=hammer --query 'KeyMaterial' --output text > ~/.ssh/hammer.pem
 * chmod 400 ~/.ssh/hammer.pem
 
-Create certificate and validate before proceeding
+Create certificate, check your e-mail and validate before proceeding, and edit 01-main.config with the certificate ARN
 * aws acm request-certificate --profile hammer --domain-name titodevops.com --idempotency-token=frgasaseae3e2da --subject-alternative-names *.titodevops.com
 
 * php composer.phar install
