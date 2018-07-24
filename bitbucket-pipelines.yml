@@ -6,14 +6,11 @@ pipelines:
         caches:
           - composer
         script:
-          - apt-get update && apt-get install -y unzip zip curl python-dev git
-          - curl -O https://bootstrap.pypa.io/get-pip.py
-          - python get-pip.py
+          - apt-get update && apt-get install -y zip python-pip git
           - pip install -r requirements.txt --upgrade --user
           - export PATH=~/.local/bin:$PATH
-          - git rev-parse --abbrev-ref HEAD
           - eb --version --debug --verbose
           - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
           - composer install
           - zip -r project.zip bin/ config/ public/ src/ templates/ vendor/ composer.json composer.lock composer.phar .ebextensions/ .elasticbeanstalk/
-          - /root/.local/bin/eb deploy --staged --debug
+          - eb deploy --staged --debug
