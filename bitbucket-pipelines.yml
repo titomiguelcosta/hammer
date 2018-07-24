@@ -9,8 +9,11 @@ pipelines:
           - apt-get update && apt-get install -y unzip zip curl python-pip
           - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
           - composer install
-          - pip install -r requirements.txt
-          - export PATH=$PATH:~/.local/bin     
+          - pip install -r requirements.txt --upgrade --user
+          - export PATH=$PATH:~/.local/bin
+          - whereis eb
+          - which eb
+          - ls -al $(which eb)
           - /usr/local/bin/eb --version
           - zip -r project.zip bin/ config/ public/ src/ templates/ vendor/ composer.json composer.lock composer.phar .ebextensions/ .elasticbeanstalk/
           - /usr/local/bin/eb deploy --staged
