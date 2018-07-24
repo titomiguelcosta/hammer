@@ -47,11 +47,13 @@ Make sure you have the command [eb](https://docs.aws.amazon.com/elasticbeanstalk
 
 * pip install -r requirements.txt
 * aws configure --profile hammer
-* aws ec2 create-key-pair --profile hammer --key-name=hammer --query 'KeyMaterial' --output text > ~/.ssh/hammer.pem
 
-Create certificate and validate
-* aws acm request-certificate --profile hammer --domain-name titodevops.com --idempotency-token=frgasaseae3e2da --subject-alternative-names *.titodevops.com
+* aws ec2 create-key-pair --profile hammer --key-name=hammer --query 'KeyMaterial' --output text > ~/.ssh/hammer.pem
 * chmod 400 ~/.ssh/hammer.pem
+
+Create certificate and validate before proceeding
+* aws acm request-certificate --profile hammer --domain-name titodevops.com --idempotency-token=frgasaseae3e2da --subject-alternative-names *.titodevops.com
+
 * php composer.phar install
 * make build
 
@@ -59,3 +61,7 @@ Create certificate and validate
 * Create an environment: eb create development
 * Configure environment variables: eb setenv APP_NAME=hammer *NAME*=*VALUE* ...
 * Deploy a new version: eb deploy development
+
+## Resources
+
+* https://aws.amazon.com/blogs/devops/using-the-elastic-beanstalk-eb-cli-to-create-manage-and-share-environment-configuration/

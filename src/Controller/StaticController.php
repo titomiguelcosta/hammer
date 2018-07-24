@@ -22,6 +22,6 @@ class StaticController extends Controller
      */
     public function home()
     {
-        return $this->json(['version' => 'v1']);
+        return $this->json(['version' => 'v1', 'branch' => getenv('BRANCH_NAME')]);
     }
 }
