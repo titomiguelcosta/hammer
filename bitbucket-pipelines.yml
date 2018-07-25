@@ -7,7 +7,7 @@ pipelines:
           - composer
         script:
           - apt-get update
-          - apt-cache search zip | grep -i php
+          - apt-cache search zip
           - apt-get install -y zip python-pip git
           - pip install -r requirements.txt --upgrade --user
           - export PATH=~/.local/bin:$PATH
