@@ -2,7 +2,7 @@ version: "3.1"
 services:
     mysql:
       image: mysql:5.7
-      container_name: titomiguelcosta-hammer-mysql
+      container_name: hammer-mysql
       working_dir: /application
       volumes:
         - .:/application
@@ -16,21 +16,23 @@ services:
 
     elasticsearch:
       image: elasticsearch:5.4-alpine
-      container_name: titomiguelcosta-hammer-elasticsearch
+      container_name: hammer-elasticsearch
 
     webserver:
       image: nginx:alpine
-      container_name: titomiguelcosta-hammer-webserver
+      container_name: hammer-webserver
       working_dir: /application
       volumes:
           - .:/application
           - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
       ports:
-       - "8080:80"
+       - "8081:80"
 
     php-fpm:
-      build: docker/php-fpm
-      container_name: titomiguelcosta-hammer-php-fpm
+      build: 
+        context: ./docker/php-fpm
+        dockerfile: Dockerfile
+      container_name: hammer-php-fpm
       working_dir: /application
       volumes:
         - .:/application
