@@ -6,7 +6,7 @@ pipelines:
         caches:
           - composer
         script:
-          - apt-get update && apt-get install -y zip python-pip git
+          - apt-get update && apt-get install -y zip python-pip git php-zip
           - pip install -r requirements.txt --upgrade --user
           - export PATH=~/.local/bin:$PATH
           - php composer.phar install
