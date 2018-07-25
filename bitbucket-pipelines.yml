@@ -7,8 +7,8 @@ pipelines:
           - composer
         script:
           - apt-get update
+          - apt-get install -y zip python-pip git zlib-dev
           - docker-php-ext-install zip
-          - apt-get install -y zip python-pip git
           - pip install -r requirements.txt --upgrade --user
           - export PATH=~/.local/bin:$PATH
           - php composer.phar install
