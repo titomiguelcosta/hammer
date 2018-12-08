@@ -13,8 +13,8 @@ class Client extends LinkedInClient
     protected $OAuthRepository;
 
     /**
-     * @param string $clientId
-     * @param string $clientSecret
+     * @param string          $clientId
+     * @param string          $clientSecret
      * @param OAuthRepository $OAuthRepository
      */
     public function __construct($clientId = '', $clientSecret = '', OAuthRepository $OAuthRepository)
@@ -37,14 +37,16 @@ class Client extends LinkedInClient
                     new AccessToken($oauthToken->getAccessToken(), $oauthToken->getExpiresAt()->getTimestamp())
                 );
             } else {
-                new Exception("LinkedIn Token has expired.");
+                new Exception('LinkedIn Token has expired.');
             }
         }
     }
 
     /**
      * @param AccessToken|string $accessToken
+     *
      * @return AccessToken|LinkedInClient|string
+     *
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      * @throws \LinkedIn\Exception

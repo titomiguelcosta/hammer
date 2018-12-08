@@ -5,7 +5,6 @@ namespace App\Command;
 use App\Client\LinkedIn\Client;
 use LinkedIn\AccessToken;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -37,9 +36,11 @@ class LinkedinOauthTokenCommand extends Command
     }
 
     /**
-     * @param InputInterface $input
+     * @param InputInterface  $input
      * @param OutputInterface $output
+     *
      * @return int|null|void
+     *
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      * @throws \LinkedIn\Exception
@@ -50,14 +51,14 @@ class LinkedinOauthTokenCommand extends Command
         $accessToken = $this->client->getAccessToken($input->getOption('code'));
 
         if ($accessToken instanceof AccessToken) {
-            $io->success('Your access token: ' . $accessToken->getToken());
+            $io->success('Your access token: '.$accessToken->getToken());
             $this->client->setAccessToken($accessToken);
 
             // test calling endpoint
             $profile = $this->client->get('people/~:(id,email-address,first-name,last-name)');
             $io->block(print_r($profile, true));
         } else {
-            $io->warning(sprintf("You need to login on: %s", urldecode($this->client->getLoginUrl($this->client->getScopes()))));
+            $io->warning(sprintf('You need to login on: %s', urldecode($this->client->getLoginUrl($this->client->getScopes()))));
         }
     }
 }

@@ -3,13 +3,10 @@
 namespace App\Controller;
 
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Swagger\Annotations as SWG;
 
-/**
- * @package App\Controller
- */
-class StaticController extends Controller
+class StaticController extends AbstractController
 {
     /**
      * @Route("/healthcheck", name="healthcheck", methods="GET")
@@ -18,6 +15,7 @@ class StaticController extends Controller
      *     description="Health check endpoint"
      * )
      * @SWG\Tag(name="hammer")
+     *
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
     public function healthcheck()

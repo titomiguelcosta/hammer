@@ -8,12 +8,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Swagger\Annotations as SWG;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-/**
- * @package App\Controller
- */
-class LinkedInController extends Controller
+class LinkedInController extends AbstractController
 {
     /**
      * @Route("/linkedin/oauth/callback", name="linkedin_oauth_callback", methods="GET")
@@ -22,9 +19,12 @@ class LinkedInController extends Controller
      *     description="Fetches LinkedIn token"
      * )
      * @SWG\Tag(name="linkedin")
+     *
      * @param Request $request
-     * @param Client $client
+     * @param Client  $client
+     *
      * @return Response
+     *
      * @throws \LinkedIn\Exception
      */
     public function oauthCallback(Request $request, Client $client)
@@ -46,8 +46,11 @@ class LinkedInController extends Controller
      *     description="Returns the user details"
      * )
      * @SWG\Tag(name="linkedin")
+     *
      * @param Client $client
+     *
      * @return \Symfony\Component\HttpFoundation\JsonResponse
+     *
      * @throws \LinkedIn\Exception
      */
     public function profile(Client $client)
