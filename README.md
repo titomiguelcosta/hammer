@@ -22,7 +22,7 @@ Copy the .env.dist to .env and add configuration for the services you want to us
 
 ## Development
 
-The API is powered by Symfony 4 and it only needs a server running PHP 7 and a database (MySQL/SQLite).
+The API is powered by Symfony 4 and it only needs a server running PHP 7.2 and a database (MySQL/SQLite).
 
 Configuration for Docker is provided. To develop locally, just run:
 
@@ -51,7 +51,7 @@ Make sure you have the command [eb](https://docs.aws.amazon.com/elasticbeanstalk
 * aws ec2 create-key-pair --profile hammer --key-name=hammer --query 'KeyMaterial' --output text > ~/.ssh/hammer.pem
 * chmod 400 ~/.ssh/hammer.pem
 
-Create certificate, check your e-mail and validate before proceeding, and edit 01-main.config with the certificate ARN
+Create certificate, check your e-mail and validate before proceeding, and edit 0-custom.config with the certificate ARN
 * aws acm request-certificate --profile hammer --domain-name titodevops.com --idempotency-token=frgasaseae3e2da --subject-alternative-names *.titodevops.com
 
 * php composer.phar install
