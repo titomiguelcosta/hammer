@@ -60,7 +60,6 @@ class LinkedInController extends AbstractController
                 return $this->json($client->get('people/~:(id,email-address,first-name,last-name)'));
             }
         } catch (Exception $e) {
-
         }
 
         return $this->redirectToRoute('linkedin_oauth_callback');
