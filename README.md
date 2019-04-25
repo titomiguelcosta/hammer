@@ -14,7 +14,7 @@ For now it integrates with:
 
 ## Installation
 
-Copy the .env.dist to .env and add configuration for the services you want to use.
+Copy the .env to .env.local and add configuration for the services you want to use.
 
 * [GitHub](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/)
 * [Twitter](https://apps.twitter.com/)
@@ -30,7 +30,8 @@ $ docker-compose up
 
 ## Endpoints
 
-It is a read-only API. All the methods return JSON and just proxies the original APIs.
+It is a read-only API. All the endpoints return JSON and just proxy the original API responses.
+
 It uses Nelmio API Docs, check /v1/docs.
 
 ### Libraries
@@ -51,7 +52,7 @@ Make sure you have the command [eb](https://docs.aws.amazon.com/elasticbeanstalk
 * aws ec2 create-key-pair --profile hammer --key-name=hammer --query 'KeyMaterial' --output text > ~/.ssh/hammer.pem
 * chmod 400 ~/.ssh/hammer.pem
 
-Create certificate, check your e-mail and validate before proceeding, and edit 0-custom.config with the certificate ARN
+Create certificate, check your e-mail and validate before proceeding, and edit .ebextensions/00-custom.config with the certificate ARN
 * aws acm request-certificate --profile hammer --domain-name titodevops.com --idempotency-token=frgasaseae3e2da --subject-alternative-names *.titodevops.com
 
 * php composer.phar install
