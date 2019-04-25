@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Client\LinkedIn\Client;
+use LinkedIn\AccessToken;
+use LinkedIn\Exception;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -50,15 +52,17 @@ class LinkedInController extends AbstractController
      * @param Client $client
      *
      * @return \Symfony\Component\HttpFoundation\Response
-     *
-     * @throws \LinkedIn\Exception
      */
     public function profile(Client $client)
     {
         try {
-            return $this->json($client->get('people/~:(id,email-address,first-name,last-name)'));
-        } catch (\Exception $exception) {
-            return $this->redirectToRoute('linkedin_oauth_callback');
+            if ($client->getAccessToken() instanceof AccessToken) {
+                return $this->json($client->get('people/~:(id,email-address,first-name,last-name)'));
+            }
+        } catch (Exception $e) {
+
         }
+
+        return $this->redirectToRoute('linkedin_oauth_callback');
     }
 }
