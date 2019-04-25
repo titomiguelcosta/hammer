@@ -49,12 +49,16 @@ class LinkedInController extends AbstractController
      *
      * @param Client $client
      *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      *
      * @throws \LinkedIn\Exception
      */
     public function profile(Client $client)
     {
-        return $this->json($client->get('people/~:(id,email-address,first-name,last-name)'));
+        try {
+            return $this->json($client->get('people/~:(id,email-address,first-name,last-name)'));
+        } catch (\Exception $exception) {
+            return $this->redirectToRoute('linkedin_oauth_callback');
+        }
     }
 }
