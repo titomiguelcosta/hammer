@@ -1,0 +1,18 @@
+image: php:7.1.17
+
+pipelines:
+  default:
+    - step:
+        caches:
+          - composer
+        script:
+          - apt-get update
+          - apt-get install -y zip python-pip git libzip-dev
+          - docker-php-ext-install zip
+          - docker-php-ext-enable zip
+          - pip install -r requirements.txt --upgrade --user
+          - export PATH=~/.local/bin:$PATH
+          - php composer.phar install
+          - php bin/phpunit
+          - zip -r project.zip bin/ config/ public/ src/ templates/ vendor/ composer.json composer.lock composer.phar .ebextensions/ .elasticbeanstalk/
+          - eb deploy --staged

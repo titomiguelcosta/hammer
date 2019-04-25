@@ -12,7 +12,7 @@ global:
   application_name: hammer
   branch: null
   default_ec2_keyname: hammer
-  default_platform: PHP 7.1
+  default_platform: PHP 7.2
   default_region: us-east-1
   include_git_submodules: true
   instance_profile: null

@@ -20,25 +20,9 @@ class OAuthRepository extends ServiceEntityRepository
         parent::__construct($registry, OAuth::class);
     }
 
-//    /**
-//     * @return OAuth[] Returns an array of OAuth objects
-//     */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('o')
-            ->andWhere('o.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('o.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
     /**
      * @return OAuth|null
+     *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function getLinkedInToken(): ?OAuth
@@ -52,6 +36,7 @@ class OAuthRepository extends ServiceEntityRepository
 
     /**
      * @param AccessToken $accessToken
+     *
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
