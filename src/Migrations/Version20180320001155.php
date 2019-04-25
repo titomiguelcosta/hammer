@@ -12,7 +12,7 @@ use Doctrine\DBAL\Schema\Schema;
  */
 class Version20180320001155 extends AbstractMigration
 {
-    public function up(Schema $schema)
+    public function up(Schema $schema): void
     {
         $platform = $this->connection->getDatabasePlatform()->getName();
         if ('mysql' === $platform) {
@@ -22,7 +22,7 @@ class Version20180320001155 extends AbstractMigration
         }
     }
 
-    public function down(Schema $schema)
+    public function down(Schema $schema): void
     {
         $this->addSql('DROP TABLE oauth');
     }
