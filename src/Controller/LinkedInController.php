@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Swagger\Annotations as SWG;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class LinkedInController extends AbstractController
 {
@@ -33,7 +34,12 @@ class LinkedInController extends AbstractController
     {
         if ($request->query->has('code')) {
             $client->getAccessToken($request->query->get('code'));
-            $response = new Response('LinkedIn token has been refreshed.');
+
+            if ($referrer = $this->container->get('session')->getFlashBag()->get('linkedin.referrer')) {
+                $response = new RedirectResponse(array_pop($referrer));
+            } else {
+                $response = new Response('LinkedIn token has been refreshed.');
+            }
         } else {
             $response = new RedirectResponse($client->getLoginUrl($client->getScopes()));
         }
@@ -53,7 +59,7 @@ class LinkedInController extends AbstractController
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function profile(Client $client)
+    public function profile(Client $client, Request $request)
     {
         try {
             if ($client->getAccessToken() instanceof AccessToken) {
@@ -61,6 +67,9 @@ class LinkedInController extends AbstractController
             }
         } catch (Exception $e) {
         }
+
+        // before redirect, store url
+        $this->addFlash('linkedin.referrer', $this->generateUrl('linkedin_user', [], UrlGeneratorInterface::ABSOLUTE_URL));
 
         return $this->redirectToRoute('linkedin_oauth_callback');
     }
