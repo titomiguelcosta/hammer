@@ -59,7 +59,7 @@ class LinkedInController extends AbstractController
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function profile(Client $client, Request $request)
+    public function profile(Client $client)
     {
         try {
             if ($client->getAccessToken() instanceof AccessToken) {
