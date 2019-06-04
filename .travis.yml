@@ -9,4 +9,6 @@ git:
 branches:
   only:
   - master
+install:
+  - composer install
 script: php vendor/bin/simple-phpunit
