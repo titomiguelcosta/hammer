@@ -10,5 +10,5 @@ branches:
   only:
   - master
 install:
-  - composer install
+  - composer install --ignore-platform-reqs
 script: php vendor/bin/simple-phpunit
