@@ -49,6 +49,6 @@ class OAuthRepository extends ServiceEntityRepository
         $oauth->setExpiresAt(new \DateTimeImmutable('@' . $accessToken->getExpiresAt()));
 
         $this->getEntityManager()->persist($oauth);
-        $this->getEntityManager()->flush($oauth);
+        $this->getEntityManager()->flush();
     }
 }
