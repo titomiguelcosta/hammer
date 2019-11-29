@@ -5,7 +5,7 @@ namespace App\Repository;
 use App\Entity\OAuth;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use LinkedIn\AccessToken;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
  * @method OAuth|null find($id, $lockMode = null, $lockVersion = null)
@@ -15,7 +15,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class OAuthRepository extends ServiceEntityRepository
 {
-    public function __construct(RegistryInterface $registry)
+    public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, OAuth::class);
     }
@@ -46,7 +46,7 @@ class OAuthRepository extends ServiceEntityRepository
         $oauth->setService('LinkedIn');
         $oauth->setAccessToken($accessToken->getToken());
         $oauth->setRefreshToken('unknown');
-        $oauth->setExpiresAt(new \DateTimeImmutable('@'.$accessToken->getExpiresAt()));
+        $oauth->setExpiresAt(new \DateTimeImmutable('@' . $accessToken->getExpiresAt()));
 
         $this->getEntityManager()->persist($oauth);
         $this->getEntityManager()->flush($oauth);
