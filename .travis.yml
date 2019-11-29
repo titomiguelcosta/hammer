@@ -9,4 +9,4 @@ branches:
   - master
 install:
   - composer install --ignore-platform-reqs
-script: php vendor/bin/simple-phpunit
+script: php vendor/bin/phpunit

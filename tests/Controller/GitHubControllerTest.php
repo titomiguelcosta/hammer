@@ -9,10 +9,10 @@ class GitHubControllerTest extends WebTestCase
     public function testShowPost()
     {
         $client = static::createClient();
-        
+
         $client->request('GET', '/v1/github/user');
 
-        $this->assertContains('tito', $client->getResponse()->getContent());
+        $this->assertStringContainsString('tito', $client->getResponse()->getContent());
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 }
