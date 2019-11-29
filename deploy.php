@@ -8,7 +8,7 @@ set('application', 'hammer:api');
 set('repository', 'https://github.com/titomiguelcosta/hammer.git');
 set('git_tty', false);
 set('keep_releases', 3);
-set('shared_dirs', ['var/log', 'var/sessions', 'var/cache', 'vendor']);
+set('shared_dirs', ['var/log', 'var/sessions', 'vendor']);
 set('writable_dirs', ['var']);
 set('composer_action', 'install');
 set('composer_options', '{{composer_action}} --verbose --prefer-dist --no-progress --no-interaction --optimize-autoloader --no-suggest');
