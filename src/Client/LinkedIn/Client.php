@@ -17,7 +17,7 @@ class Client extends LinkedInClient
      * @param string          $clientSecret
      * @param OAuthRepository $OAuthRepository
      */
-    public function __construct($clientId = '', $clientSecret = '', OAuthRepository $OAuthRepository)
+    public function __construct(string $clientId = '', string $clientSecret = '', OAuthRepository $OAuthRepository)
     {
         parent::__construct($clientId, $clientSecret);
         $this->OAuthRepository = $OAuthRepository;
@@ -28,7 +28,7 @@ class Client extends LinkedInClient
      * @throws \Doctrine\ORM\OptimisticLockException
      * @throws \LinkedIn\Exception
      */
-    public function handleAccessToken()
+    public function handleAccessToken(): void
     {
         $oauthToken = $this->OAuthRepository->getLinkedInToken();
         if ($oauthToken instanceof OAuth) {
@@ -65,6 +65,6 @@ class Client extends LinkedInClient
      */
     public function getScopes(): array
     {
-        return explode(',', getenv('LINKEDIN_APP_SCOPE'));
+        return explode(',', $_ENV['LINKEDIN_APP_SCOPE']);
     }
 }
