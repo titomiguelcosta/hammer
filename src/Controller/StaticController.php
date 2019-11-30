@@ -20,6 +20,6 @@ class StaticController extends AbstractController
      */
     public function healthcheck()
     {
-        return $this->json(['version' => 'v1', 'branch' => (string) getenv('BRANCH_NAME')]);
+        return $this->json(['version' => 'v1', 'branch' => $_ENV['BRANCH_NAME']]);
     }
 }

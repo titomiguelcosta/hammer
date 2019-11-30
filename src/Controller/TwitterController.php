@@ -23,7 +23,7 @@ class TwitterController extends AbstractController
      */
     public function user(TwitterOAuth $client)
     {
-        return $this->json($client->get('users/show', ['user_id' => getenv('TWITTER_USER_ID')]));
+        return $this->json($client->get('users/show', ['user_id' => $_ENV['TWITTER_USER_ID']]));
     }
 
     /**
