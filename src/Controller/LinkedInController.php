@@ -63,7 +63,7 @@ class LinkedInController extends AbstractController
     {
         try {
             if ($client->getAccessToken() instanceof AccessToken) {
-                return $this->json($client->get('me?projection=(id,firstName,lastName,profilePicture(displayImage~:playableStreams)'));
+                return $this->json($client->get('me'));
             }
         } catch (Exception $e) {
             $this->get('logger')->error($e->getMessage());
