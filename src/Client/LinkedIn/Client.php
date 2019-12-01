@@ -20,10 +20,11 @@ class Client extends LinkedInClient
     public function __construct(string $clientId = '', string $clientSecret = '', OAuthRepository $OAuthRepository)
     {
         parent::__construct($clientId, $clientSecret);
+        $this->setApiRoot('https://api.linkedin.com/v2/');
         $this->setApiHeaders([
             'Content-Type' => 'application/json',
             'x-li-format' => 'json',
-            'X-Restli-Protocol-Version' => '1.0.0',
+            'X-Restli-Protocol-Version' => '2.0.0',
         ]);
         $this->OAuthRepository = $OAuthRepository;
     }
