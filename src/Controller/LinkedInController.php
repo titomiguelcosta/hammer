@@ -66,6 +66,7 @@ class LinkedInController extends AbstractController
                 return $this->json($client->get('people/~:(id,email-address,first-name,last-name)'));
             }
         } catch (Exception $e) {
+            $this->get('logger')->error($e->getMessage());
         }
 
         // before redirect, store url

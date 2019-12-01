@@ -6,7 +6,7 @@ use App\Entity\OAuth;
 use App\Repository\OAuthRepository;
 use LinkedIn\AccessToken;
 use LinkedIn\Client as LinkedInClient;
-use LinkedIn\Exception;
+use LinkedIn\Exception as LinkedInException;
 
 class Client extends LinkedInClient
 {
@@ -20,6 +20,11 @@ class Client extends LinkedInClient
     public function __construct(string $clientId = '', string $clientSecret = '', OAuthRepository $OAuthRepository)
     {
         parent::__construct($clientId, $clientSecret);
+        $this->setApiHeaders([
+            'Content-Type' => 'application/json',
+            'x-li-format' => 'json',
+            'X-Restli-Protocol-Version' => '1.0.0',
+        ]);
         $this->OAuthRepository = $OAuthRepository;
     }
 
@@ -37,7 +42,7 @@ class Client extends LinkedInClient
                     new AccessToken($oauthToken->getAccessToken(), $oauthToken->getExpiresAt()->getTimestamp())
                 );
             } else {
-                new Exception('LinkedIn Token has expired.');
+                new LinkedInException('LinkedIn Token has expired.');
             }
         }
     }
