@@ -3,11 +3,11 @@
 namespace App\EventSubscriber;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
 
 class FormatListenerSubscriber implements EventSubscriberInterface
 {
-    public function onKernelRequest(GetResponseEvent $event)
+    public function onKernelRequest(RequestEvent $event)
     {
         $request = $event->getRequest();
 
@@ -19,7 +19,7 @@ class FormatListenerSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-           'kernel.request' => 'onKernelRequest',
+            'kernel.request' => 'onKernelRequest',
         ];
     }
 }
