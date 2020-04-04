@@ -2,8 +2,8 @@
 
 namespace App\Mock\GitHub;
 
-use Github\Client as BaseClient;
 use App\Mock\GitHub\Api\CurrentUser;
+use Github\Client as BaseClient;
 
 class Client extends BaseClient
 {

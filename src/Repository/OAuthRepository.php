@@ -4,8 +4,8 @@ namespace App\Repository;
 
 use App\Entity\OAuth;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use LinkedIn\AccessToken;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use LinkedIn\AccessToken;
 
 /**
  * @method OAuth|null find($id, $lockMode = null, $lockVersion = null)
@@ -21,8 +21,6 @@ class OAuthRepository extends ServiceEntityRepository
     }
 
     /**
-     * @return OAuth|null
-     *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function getLinkedInToken(): ?OAuth
@@ -35,8 +33,6 @@ class OAuthRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param AccessToken $accessToken
-     *
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
@@ -46,7 +42,7 @@ class OAuthRepository extends ServiceEntityRepository
         $oauth->setService('LinkedIn');
         $oauth->setAccessToken($accessToken->getToken());
         $oauth->setRefreshToken('unknown');
-        $oauth->setExpiresAt(new \DateTimeImmutable('@' . $accessToken->getExpiresAt()));
+        $oauth->setExpiresAt(new \DateTimeImmutable('@'.$accessToken->getExpiresAt()));
 
         $this->getEntityManager()->persist($oauth);
         $this->getEntityManager()->flush();

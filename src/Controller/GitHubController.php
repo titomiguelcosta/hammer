@@ -3,9 +3,9 @@
 namespace App\Controller;
 
 use Github\Client;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Swagger\Annotations as SWG;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Routing\Annotation\Route;
 
 class GitHubController extends AbstractController
 {
@@ -16,8 +16,6 @@ class GitHubController extends AbstractController
      *     description="Returns the user details"
      * )
      * @SWG\Tag(name="github")
-     *
-     * @param Client $client
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
@@ -33,7 +31,6 @@ class GitHubController extends AbstractController
      *     description="Returns the user repos"
      * )
      *
-     * @param Client $client
      * @SWG\Tag(name="github")
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse

@@ -12,11 +12,6 @@ class Client extends LinkedInClient
 {
     protected $OAuthRepository;
 
-    /**
-     * @param string          $clientId
-     * @param string          $clientSecret
-     * @param OAuthRepository $OAuthRepository
-     */
     public function __construct(string $clientId = '', string $clientSecret = '', OAuthRepository $OAuthRepository)
     {
         parent::__construct($clientId, $clientSecret);
@@ -66,9 +61,6 @@ class Client extends LinkedInClient
         return $accessToken;
     }
 
-    /**
-     * @return array
-     */
     public function getScopes(): array
     {
         return explode(',', $_ENV['LINKEDIN_APP_SCOPE']);

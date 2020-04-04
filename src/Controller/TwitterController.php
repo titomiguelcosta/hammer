@@ -3,9 +3,9 @@
 namespace App\Controller;
 
 use Abraham\TwitterOAuth\TwitterOAuth;
+use Swagger\Annotations as SWG;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use Swagger\Annotations as SWG;
 
 class TwitterController extends AbstractController
 {
@@ -16,8 +16,6 @@ class TwitterController extends AbstractController
      *     description="Returns the user details"
      * )
      * @SWG\Tag(name="twitter")
-     *
-     * @param TwitterOAuth $client
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
@@ -33,8 +31,6 @@ class TwitterController extends AbstractController
      *     description="Returns the user tweets"
      * )
      * @SWG\Tag(name="twitter")
-     *
-     * @param TwitterOAuth $client
      *
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */

@@ -19,9 +19,6 @@ class LinkedinOauthTokenCommand extends Command
      */
     protected $client;
 
-    /**
-     * @param Client $linkedInClient
-     */
     public function __construct(Client $linkedInClient)
     {
         parent::__construct();
@@ -36,9 +33,6 @@ class LinkedinOauthTokenCommand extends Command
     }
 
     /**
-     * @param InputInterface  $input
-     * @param OutputInterface $output
-     *
      * @return int|void|null
      *
      * @throws \Doctrine\ORM\ORMException

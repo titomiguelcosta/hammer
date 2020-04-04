@@ -5,12 +5,12 @@ namespace App\Controller;
 use App\Client\LinkedIn\Client;
 use LinkedIn\AccessToken;
 use LinkedIn\Exception;
+use Swagger\Annotations as SWG;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Swagger\Annotations as SWG;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class LinkedInController extends AbstractController
@@ -22,9 +22,6 @@ class LinkedInController extends AbstractController
      *     description="Fetches LinkedIn token"
      * )
      * @SWG\Tag(name="linkedin")
-     *
-     * @param Request $request
-     * @param Client  $client
      *
      * @return Response
      *
@@ -54,8 +51,6 @@ class LinkedInController extends AbstractController
      *     description="Returns the user details"
      * )
      * @SWG\Tag(name="linkedin")
-     *
-     * @param Client $client
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
