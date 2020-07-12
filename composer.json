@@ -2,7 +2,7 @@
     "type": "project",
     "license": "proprietary",
     "require": {
-        "php": ">=7.3,<7.4",
+        "php": ">=7.3,<8.0",
         "ext-iconv": "*",
         "abraham/twitteroauth": "^0.7.4",
         "knplabs/github-api": "^2.7",
