@@ -1,7 +1,7 @@
 HAMMER
 ======
 
-With gobie
+With gobie and checks
 
 API by developers for developers
 --------------------------------
