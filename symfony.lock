@@ -20,6 +20,9 @@
             ".php_cs.dist"
         ]
     },
+    "friendsofphp/proxy-manager-lts": {
+        "version": "v1.0.3"
+    },
     "myclabs/deep-copy": {
         "version": "1.9.3"
     },
