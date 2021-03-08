@@ -1,7 +1,7 @@
 HAMMER
 ======
 
-With gobie and check runs on
+With gobie and check runs on... Now the real test
 
 API by developers for developers
 --------------------------------
