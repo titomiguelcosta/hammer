@@ -1,7 +1,7 @@
 HAMMER
 ======
 
-With gobie and check runs on... one moiiiiire
+With gobie and check runs on... one moiiiiaaaaire
 
 API by developers for developers
 --------------------------------
