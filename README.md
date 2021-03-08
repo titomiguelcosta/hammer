@@ -1,7 +1,7 @@
 HAMMER
 ======
 
-With gobie and checks with debug maybe now OKKKK
+With gobie and checks with debug mode on
 
 API by developers for developers
 --------------------------------
