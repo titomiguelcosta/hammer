@@ -11,7 +11,7 @@ set('keep_releases', 3);
 set('shared_dirs', ['var/log', 'var/sessions', 'vendor']);
 set('writable_dirs', ['var', 'var/cache']);
 set('composer_action', 'install');
-set('composer_options', '{{composer_action}} --verbose --prefer-dist --no-progress --no-interaction --optimize-autoloader --no-suggest');
+set('composer_options', '{{composer_action}} --verbose --prefer-dist --no-progress --no-interaction --optimize-autoloader');
 
 host('api.hammer.titomiguelcosta.com')
     ->user('ubuntu')
