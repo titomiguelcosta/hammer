@@ -42,7 +42,7 @@ class OAuthRepository extends ServiceEntityRepository
         $oauth->setService('LinkedIn');
         $oauth->setAccessToken($accessToken->getToken());
         $oauth->setRefreshToken('unknown');
-        $oauth->setExpiresAt(new \DateTimeImmutable('@' . $accessToken->getExpiresAt()));
+        $oauth->setExpiresAt(new \DateTimeImmutable('@'.$accessToken->getExpiresAt()));
 
         $this->getEntityManager()->persist($oauth);
         $this->getEntityManager()->flush();
