@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use Swagger\Annotations as SWG;
+use OpenApi\Annotations as SWG;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 

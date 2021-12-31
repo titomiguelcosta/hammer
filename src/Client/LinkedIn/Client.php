@@ -12,7 +12,7 @@ class Client extends LinkedInClient
 {
     protected $OAuthRepository;
 
-    public function __construct(string $clientId = '', string $clientSecret = '', OAuthRepository $OAuthRepository)
+    public function __construct(OAuthRepository $OAuthRepository, string $clientId = '', string $clientSecret = '')
     {
         parent::__construct($clientId, $clientSecret);
         $this->setApiRoot('https://api.linkedin.com/v2/');

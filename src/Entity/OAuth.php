@@ -9,8 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class OAuth
 {
-    const LINKEDIN = 'LinkedIn';
-    const TWITTER = 'Twitter';
+    public const LINKEDIN = 'LinkedIn';
+    public const TWITTER = 'Twitter';
 
     /**
      * @ORM\Id()

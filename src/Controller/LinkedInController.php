@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Client\LinkedIn\Client;
 use LinkedIn\AccessToken;
 use LinkedIn\Exception;
-use Swagger\Annotations as SWG;
+use OpenApi\Annotations as SWG;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
