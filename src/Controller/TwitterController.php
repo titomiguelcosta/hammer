@@ -5,6 +5,7 @@ namespace App\Controller;
 use Abraham\TwitterOAuth\TwitterOAuth;
 use OpenApi\Annotations as SWG;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
 class TwitterController extends AbstractController
@@ -16,10 +17,8 @@ class TwitterController extends AbstractController
      *     description="Returns the user details"
      * )
      * @SWG\Tag(name="twitter")
-     *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
-    public function user(TwitterOAuth $client)
+    public function user(TwitterOAuth $client): JsonResponse
     {
         return $this->json($client->get('users/show', ['user_id' => $_ENV['TWITTER_USER_ID']]));
     }
@@ -31,10 +30,8 @@ class TwitterController extends AbstractController
      *     description="Returns the user tweets"
      * )
      * @SWG\Tag(name="twitter")
-     *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
-    public function tweets(TwitterOAuth $client)
+    public function tweets(TwitterOAuth $client): JsonResponse
     {
         return $this->json($client->get('statuses/user_timeline', ['count' => 25, 'exclude_replies' => true]));
     }

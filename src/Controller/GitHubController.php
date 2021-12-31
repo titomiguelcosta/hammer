@@ -5,6 +5,7 @@ namespace App\Controller;
 use Github\Client;
 use OpenApi\Annotations as SWG;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
 class GitHubController extends AbstractController
@@ -16,10 +17,8 @@ class GitHubController extends AbstractController
      *     description="Returns the user details"
      * )
      * @SWG\Tag(name="github")
-     *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
-    public function user(Client $client)
+    public function user(Client $client): JsonResponse
     {
         return $this->json($client->currentUser()->show());
     }
@@ -30,12 +29,9 @@ class GitHubController extends AbstractController
      *     response=200,
      *     description="Returns the user repos"
      * )
-     *
      * @SWG\Tag(name="github")
-     *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
-    public function repos(Client $client)
+    public function repos(Client $client): JsonResponse
     {
         return $this->json($client->currentUser()->repositories());
     }

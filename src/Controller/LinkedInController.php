@@ -29,12 +29,10 @@ class LinkedInController extends AbstractController
      *     description="Fetches LinkedIn token"
      * )
      * @SWG\Tag(name="linkedin")
-     *
-     * @return Response
-     *
+     * 
      * @throws \LinkedIn\Exception
      */
-    public function oauthCallback(Request $request, Client $client)
+    public function oauthCallback(Request $request, Client $client): RedirectResponse
     {
         if ($request->query->has('code')) {
             $client->getAccessToken($request->query->get('code'));
@@ -44,7 +42,7 @@ class LinkedInController extends AbstractController
             if ($referrer = $session->getFlashBag()->get('linkedin.referrer')) {
                 $response = new RedirectResponse(array_pop($referrer));
             } else {
-                $response = new Response('LinkedIn token has been refreshed.');
+                $response = new RedirectResponse($this->generateUrl('linkedin_user', [], UrlGeneratorInterface::ABSOLUTE_URL));
             }
         } else {
             $response = new RedirectResponse($client->getLoginUrl($client->getScopes()));
@@ -60,10 +58,8 @@ class LinkedInController extends AbstractController
      *     description="Returns the user details"
      * )
      * @SWG\Tag(name="linkedin")
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function profile(Client $client)
+    public function profile(Client $client): Response
     {
         try {
             if ($client->getAccessToken() instanceof AccessToken) {
