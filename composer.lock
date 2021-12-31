@@ -7002,12 +7002,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/titomiguelcosta/linkedin-api-php-client.git",
-                "reference": "9d3d15417c1cdb75e898226316912f774bf64d89"
+                "reference": "3f743027b63a9b3c313a4b1139cf61fa926eb6cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/titomiguelcosta/linkedin-api-php-client/zipball/9d3d15417c1cdb75e898226316912f774bf64d89",
-                "reference": "9d3d15417c1cdb75e898226316912f774bf64d89",
+                "url": "https://api.github.com/repos/titomiguelcosta/linkedin-api-php-client/zipball/3f743027b63a9b3c313a4b1139cf61fa926eb6cc",
+                "reference": "3f743027b63a9b3c313a4b1139cf61fa926eb6cc",
                 "shasum": ""
             },
             "require": {
@@ -7093,7 +7093,7 @@
                 "issues": "https://github.com/zoonman/linkedin-api-php-client/issues",
                 "wiki": "https://github.com/zoonman/linkedin-api-php-client/wiki"
             },
-            "time": "2021-12-31T10:28:37+00:00"
+            "time": "2021-12-31T11:21:22+00:00"
         },
         {
             "name": "twig/twig",
