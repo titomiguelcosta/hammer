@@ -6,15 +6,22 @@ use App\Client\LinkedIn\Client;
 use LinkedIn\AccessToken;
 use LinkedIn\Exception;
 use OpenApi\Annotations as SWG;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpFoundation\Session;
 
 class LinkedInController extends AbstractController
 {
+    public function __construct(private RequestStack $requestStack, private LoggerInterface $logger)
+    {
+    }
+
     /**
      * @Route("/linkedin/oauth/callback", name="linkedin_oauth_callback", methods="GET")
      * @SWG\Response(
@@ -31,8 +38,10 @@ class LinkedInController extends AbstractController
     {
         if ($request->query->has('code')) {
             $client->getAccessToken($request->query->get('code'));
+            /** @var Session $session  */
+            $session = $this->requestStack->getSession();
 
-            if ($referrer = $this->container->get('session')->getFlashBag()->get('linkedin.referrer')) {
+            if ($referrer = $session->getFlashBag()->get('linkedin.referrer')) {
                 $response = new RedirectResponse(array_pop($referrer));
             } else {
                 $response = new Response('LinkedIn token has been refreshed.');
@@ -61,7 +70,7 @@ class LinkedInController extends AbstractController
                 return $this->json($client->get('me'));
             }
         } catch (Exception $e) {
-            $this->get('logger')->error($e->getMessage());
+            $this->logger->error($e->getMessage());
         }
 
         // before redirect, store url
