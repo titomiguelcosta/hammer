@@ -4,19 +4,19 @@ namespace App\Command;
 
 use App\Client\LinkedIn\Client;
 use LinkedIn\AccessToken;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
+#[AsCommand(
+    name: 'linkedin:oauth-token',
+    description: 'Generate or refresh the LinkedIn access token',
+)]
 class LinkedinOauthTokenCommand extends Command
 {
-    protected static $defaultName = 'linkedin:oauth-token';
-
-    /**
-     * @var Client
-     */
     protected $client;
 
     public function __construct(Client $linkedInClient)
@@ -28,7 +28,6 @@ class LinkedinOauthTokenCommand extends Command
     protected function configure()
     {
         $this
-            ->setDescription('Generate or refresh the LinkedIn access token')
             ->addOption('code', null, InputOption::VALUE_REQUIRED, 'Code in the callback url', '');
     }
 

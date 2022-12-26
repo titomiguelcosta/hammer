@@ -10,11 +10,11 @@ use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\HttpFoundation\Session;
 
 class LinkedInController extends AbstractController
 {
@@ -29,14 +29,14 @@ class LinkedInController extends AbstractController
      *     description="Fetches LinkedIn token"
      * )
      * @SWG\Tag(name="linkedin")
-     * 
+     *
      * @throws \LinkedIn\Exception
      */
     public function oauthCallback(Request $request, Client $client): RedirectResponse
     {
         if ($request->query->has('code')) {
             $client->getAccessToken($request->query->get('code'));
-            /** @var Session $session  */
+            /** @var Session $session */
             $session = $this->requestStack->getSession();
 
             if ($referrer = $session->getFlashBag()->get('linkedin.referrer')) {
