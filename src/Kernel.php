@@ -22,8 +22,6 @@ class Kernel extends BaseKernel
             $path = \dirname(__DIR__).'/config/services.php';
             (require $path)($container->withPath($path), $this);
         }
-
-        $container->import('../config/{packages}/'.$this->environment.'/*.yaml');
     }
 
     protected function configureRoutes(RoutingConfigurator $routes): void

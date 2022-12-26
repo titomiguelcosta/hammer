@@ -47,3 +47,8 @@ services:
         class: Github\Client
         calls:
             - ['authenticate', ['%env(GITHUB_USERNAME)%', '%env(GITHUB_SECRET)%', '%env(GITHUB_AUTH_METHOD)%']]
+
+when@test:
+    services:
+        Github\Client:
+            class: App\Mock\GitHub\Client

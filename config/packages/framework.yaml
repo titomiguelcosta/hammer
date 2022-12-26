@@ -32,3 +32,38 @@ framework:
 
     # APCu (not recommended with heavy random-write workloads as memory fragmentation can cause perf issues)
     #app: cache.adapter.apcu
+
+when@dev:
+  framework:
+    router:
+      strict_requirements: true
+
+when@test:
+  framework:
+    test: true
+    session:
+      storage_factory_id: session.storage.factory.mock_file
+
+when@prod:
+  doctrine:
+    dbal:
+      url: "%env(resolve:DATABASE_URL)%"
+
+    orm:
+      auto_generate_proxy_classes: true
+      naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
+      auto_mapping: true
+      mappings:
+        App:
+          is_bundle: false
+          dir: "%kernel.project_dir%/src/Entity"
+          prefix: 'App\Entity'
+          alias: App
+
+  framework:
+    cache:
+      pools:
+        doctrine.result_cache_pool:
+          adapter: cache.app
+        doctrine.system_cache_pool:
+          adapter: cache.system

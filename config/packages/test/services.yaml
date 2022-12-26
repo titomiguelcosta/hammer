@@ -1,3 +1,0 @@
-services:
-  Github\Client:
-    class: App\Mock\GitHub\Client
