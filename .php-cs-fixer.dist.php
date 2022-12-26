@@ -1,9 +1,14 @@
 <?php
 
-$fixer = new PhpCsFixer\Config();
+$finder = (new PhpCsFixer\Finder())
+    ->in(__DIR__)
+    ->exclude('var')
+;
 
-return $fixer
+return (new PhpCsFixer\Config())
     ->setRules([
         '@Symfony' => true,
-        'array_syntax' => ['syntax' => 'short'],
-    ]);
+    ])
+    ->setFinder($finder)
+;
+
