@@ -45,7 +45,10 @@ services:
         calls:
             - ['authenticate', ['%env(GITHUB_USERNAME)%', '%env(GITHUB_SECRET)%', '%env(GITHUB_AUTH_METHOD)%']]
 
-    Facebook\Facebook: ~
+    Facebook\Facebook:
+        arguments:
+            -
+                persistent_data_handler: session
 
 when@test:
     services:
