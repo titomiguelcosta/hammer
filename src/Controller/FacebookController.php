@@ -19,6 +19,9 @@ class FacebookController extends AbstractController
 {
     public function __construct(private Facebook $facebook, private RequestStack $requestStack, private LoggerInterface $logger)
     {
+        if (!session_id()) {
+            session_start();
+        }
     }
 
     /**
