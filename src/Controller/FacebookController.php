@@ -31,10 +31,10 @@ class FacebookController extends AbstractController
      */
     public function oauthCallback(Request $request): RedirectResponse
     {
-        if ($request->query->has('code') && $request->query->has('state')) {
-            /** @var Session $session */
-            $session = $this->requestStack->getSession();
+        /** @var Session $session */
+        $session = $this->requestStack->getSession();
 
+        if ($request->query->has('code') && $request->query->has('state')) {
             $accessToken = $this->facebook->getRedirectLoginHelper()->getAccessToken();
             $this->addFlash('facebook.access_token', $accessToken->getValue());
 
