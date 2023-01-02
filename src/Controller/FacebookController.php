@@ -17,11 +17,15 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class FacebookController extends AbstractController
 {
-    public function __construct(private Facebook $facebook, private RequestStack $requestStack, private LoggerInterface $logger)
+    private $facebook;
+    private $session;
+
+    public function __construct(private RequestStack $requestStack, private LoggerInterface $logger)
     {
-        if (!session_id()) {
-            session_start();
-        }
+        $this->session = $requestStack->getSession();
+        $this->start();
+        
+        $this->facebook = new Facebook(['persistent_data_handler' => 'session']);
     }
 
     /**
@@ -34,14 +38,11 @@ class FacebookController extends AbstractController
      */
     public function oauthCallback(Request $request): RedirectResponse
     {
-        /** @var Session $session */
-        $session = $this->requestStack->getSession();
-
         if ($request->query->has('code') && $request->query->has('state')) {
             $accessToken = $this->facebook->getRedirectLoginHelper()->getAccessToken();
             $this->addFlash('facebook.access_token', $accessToken->getValue());
 
-            if ($referrer = $session->getFlashBag()->get('facebook.referrer')) {
+            if ($referrer = $this->session->getFlashBag()->get('facebook.referrer')) {
                 $response = new RedirectResponse(array_pop($referrer));
             } else {
                 $response = new RedirectResponse($this->generateUrl('facebook_user', [], UrlGeneratorInterface::ABSOLUTE_URL));
@@ -69,9 +70,7 @@ class FacebookController extends AbstractController
     public function profile(): Response
     {
         try {
-            /** @var Session $session */
-            $session = $this->requestStack->getSession();
-            $accessToken = $session->getFlashBag()->get('facebook.access_token');
+            $accessToken = $this->session->getFlashBag()->get('facebook.access_token');
 
             if (!$accessToken) {
                 return $this->redirectToRoute('facebook_oauth_callback');
