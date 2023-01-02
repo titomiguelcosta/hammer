@@ -17,13 +17,20 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class FacebookController extends AbstractController
 {
+    /**
+     * @var Facebook
+     */
     private $facebook;
+
+    /**
+     * @var Session
+     */
     private $session;
 
     public function __construct(private RequestStack $requestStack, private LoggerInterface $logger)
     {
         $this->session = $requestStack->getSession();
-        $this->start();
+        $this->session->start();
         
         $this->facebook = new Facebook(['persistent_data_handler' => 'session']);
     }
