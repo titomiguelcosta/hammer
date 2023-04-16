@@ -7,7 +7,7 @@ require 'recipe/symfony4.php';
 set('application', 'hammer:api');
 set('repository', 'https://github.com/titomiguelcosta/hammer.git');
 set('git_tty', false);
-set('keep_releases', 3);
+set('keep_releases', 2);
 set('shared_dirs', ['var/log', 'var/sessions', 'vendor']);
 set('writable_dirs', ['var', 'var/cache']);
 set('composer_action', 'install');
